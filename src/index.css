@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 16% 96%;
+    --foreground: 220 50% 5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 50% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 50% 5%;
+
+    --primary: 220 80% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 88%;
+    --secondary-foreground: 220 50% 10%;
+
+    --muted: 220 16% 90%;
+    --muted-foreground: 220 15% 35%;
+
+    --accent: 160 70% 34%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 82% 46%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 82%;
+    --input: 220 20% 82%;
+    --ring: 220 80% 42%;
+
+    --radius: 0.625rem;
+
+    /* Custom workflow tokens */
+    --phase-planning: 220 80% 42%;
+    --phase-peer-review: 280 65% 50%;
+    --phase-audit: 35 95% 48%;
+    --phase-sign-off: 200 60% 42%;
+    
+    --task-reminder: 45 100% 48%;
+    --task-team-lead: 180 75% 38%;
+    --task-query: 300 65% 50%;
+    --task-complete: 160 70% 34%;
+    --task-overdue: 0 82% 46%;
+    --task-pending: 220 15% 60%;
+
+    --sidebar-background: 220 35% 10%;
+    --sidebar-foreground: 220 15% 88%;
+    --sidebar-primary: 220 80% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 30% 16%;
+    --sidebar-accent-foreground: 220 15% 88%;
+    --sidebar-border: 220 30% 18%;
+    --sidebar-ring: 220 80% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer utilities {
+  .phase-badge-not-started {
+    @apply bg-muted text-muted-foreground;
+  }
+  .phase-badge-planning {
+    @apply bg-primary/10 text-primary;
+  }
+  .phase-badge-peer-review {
+    background: hsl(var(--phase-peer-review) / 0.1);
+    color: hsl(var(--phase-peer-review));
+  }
+  .phase-badge-audit {
+    background: hsl(var(--phase-audit) / 0.1);
+    color: hsl(var(--phase-audit));
+  }
+  .phase-badge-sign-off {
+    background: hsl(var(--phase-sign-off) / 0.1);
+    color: hsl(var(--phase-sign-off));
+  }
+  .phase-badge-completed {
+    background: hsl(var(--task-complete) / 0.1);
+    color: hsl(var(--task-complete));
+  }
+}
+
+/* Animated checkmark - draw effect */
+.checkmark-animated .checkmark-circle {
+  stroke-dasharray: 63;
+  stroke-dashoffset: 63;
+  animation: checkmark-circle-draw 0.5s ease-out forwards;
+}
+.checkmark-animated .checkmark-check {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: checkmark-check-draw 0.4s ease-out 0.4s forwards;
+}
+
+@keyframes checkmark-circle-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes checkmark-check-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Extraction progress bar animation - fills over 4s */
+.extraction-progress {
+  animation: extraction-fill 3.8s ease-in-out forwards;
+}
+
+@keyframes extraction-fill {
+  0% { width: 0%; }
+  20% { width: 15%; }
+  50% { width: 45%; }
+  75% { width: 72%; }
+  90% { width: 88%; }
+  100% { width: 100%; }
+}
